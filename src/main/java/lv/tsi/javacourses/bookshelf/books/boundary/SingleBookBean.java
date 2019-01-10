@@ -14,11 +14,16 @@ public class SingleBookBean implements Serializable {
     private Long id;
     @PersistenceContext
     private EntityManager em;
+    private BookEntity book;
+
+    public void openbook() {
+        System.out.println("Opening book" + id);
+        book = em.find(BookEntity.class, id);
+    }
 
 
     public BookEntity getBook() {
-        System.out.println("Opening book" + id);
-        return em.find(BookEntity.class, id);
+        return book;
 
 
     }
