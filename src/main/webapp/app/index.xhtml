@@ -1,0 +1,41 @@
+<!--
+  ~ Copyright (c) 2018 Dimitrijs Fedotovs
+  ~ This code is licensed under MIT license
+  ~ (see LICENSE.txt for details)
+  -->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/templates/main.xhtml">
+    <ui:define name="content">
+
+        <h:form>
+
+            <h:inputText value="#{bookBean.term}"/>
+            <h:commandButton value="Search" action="#{bookBean.doSearch}">
+                <f:ajax execute="@form" render="@form"/>
+            </h:commandButton>
+
+            <h:outputLabel value="Not found"
+                           rendered="#{empty bookBean.books}"/>
+            <h:dataTable value="#{bookBean.books}" var="book"
+                         rendered="#{not empty bookBean.books}">
+                <h:column>
+                    <f:facet name="header">Id</f:facet>
+                    #{book.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Title</f:facet>
+                    #{book.title}
+                </h:column>
+            </h:dataTable>
+
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+</html>
