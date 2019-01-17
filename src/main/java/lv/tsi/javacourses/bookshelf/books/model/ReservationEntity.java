@@ -7,9 +7,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity(name = "Reservation")
-@Table(name = "reservation")
+@Table(name = "reservations")
 public class ReservationEntity implements Serializable {
-
     @Id
     @GeneratedValue
     private Long id;
@@ -18,6 +17,7 @@ public class ReservationEntity implements Serializable {
     @ManyToOne
     private UserEntity user;
     @Column
+    @Enumerated(EnumType.STRING)
     private ReservationStatus status;
     @Column
     private LocalDateTime created;
@@ -26,9 +26,6 @@ public class ReservationEntity implements Serializable {
     public void onCreate() {
         created = LocalDateTime.now();
     }
-
-
-
 
     public Long getId() {
         return id;
@@ -54,12 +51,19 @@ public class ReservationEntity implements Serializable {
         this.user = user;
     }
 
-
     public ReservationStatus getStatus() {
         return status;
     }
 
     public void setStatus(ReservationStatus status) {
         this.status = status;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
     }
 }
