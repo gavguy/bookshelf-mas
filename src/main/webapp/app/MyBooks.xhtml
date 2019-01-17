@@ -31,7 +31,28 @@
         </h:dataTable>
 
         <h2>Wait list</h2>
-        <h:dataTable value="#{myBooksBean.inQuinResult}"
+        <h:dataTable value="#{myBooksBean.inQueueBooks}"
+                     var="res">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                #{res.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Status</f:facet>
+                #{res.status}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Book Title</f:facet>
+                #{res.book.title}
+            </h:column>
+            <h:column>
+                <f:facet name="header">User Name</f:facet>
+                #{res.user.loginName}
+            </h:column>
+        </h:dataTable>
+
+        <h2>Taken list</h2>
+        <h:dataTable value="#{myBooksBean.takenBooks}"
                      var="res">
             <h:column>
                 <f:facet name="header">Id</f:facet>
